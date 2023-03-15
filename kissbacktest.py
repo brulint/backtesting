@@ -1,11 +1,3 @@
-import requests
-import numpy as np
-import pandas as pd
-import talib as ta
-from bokeh.plotting import figure,show
-from bokeh.layouts import column,row
-
-# download data from Cryptowatch
 url = f'https://api.cryptowat.ch/markets/kraken/btceur/ohlc'
 ohlc = requests.get(url).json()['result'][str(4*60*60)] # 4h
 columns = ['time','open','high','low','close','volume','count']
@@ -33,27 +25,27 @@ R_strat = np.nancumprod(r_strat)
 R_net = np.nancumprod(r_strat * r_fee)
 
 # graphic
-p1 = figure(height=300, width=800)
+p1 = figure(height=300, width=800, title="Charts BTC/EUR 4h 15/03/2023")
 p1.line(df.time, df.close)
-p2 =  figure(height=100, width=800, x_range=p1.x_range)
+p2 =  figure(height=100, width=800, x_range=p1.x_range, title="RSI 7")
 p2.line(df.time, RSI)
 p2.line(df.time, 70, color='green')
 p2.line(df.time, 30, color='red')
-p3_1 = figure(height=100, width=800, x_range=p1.x_range)
+p3_1 = figure(height=100, width=800, x_range=p1.x_range, title="SIG_buy")
 p3_1.line(df.time, SIG_buy, color='green')
-p3_2 = figure(height=100, width=800, x_range=p1.x_range)
+p3_2 = figure(height=100, width=800, x_range=p1.x_range, title="SIG_sell")
 p3_2.line(df.time, SIG_sell, color='red')
-p3_3 = figure(height=100, width=800, x_range=p1.x_range)
+p3_3 = figure(height=100, width=800, x_range=p1.x_range, title="SIG_0")
 p3_3.line(df.time, SIG_0)
-p3_3_2 = figure(height=100, width=800, x_range=p1.x_range)
+p3_3_2 = figure(height=100, width=800, x_range=p1.x_range, title="SIG_1")
 p3_3_2.line(df.time,SIG_1)
-p3_4 = figure(height=100, width=800, x_range=p1.x_range)
+p3_4 = figure(height=100, width=800, x_range=p1.x_range, title="Position")
 p3_4.line(df.time, POS)
-p4 = figure(height=150, width=800, x_range=p1.x_range)
+p4 = figure(height=150, width=800, x_range=p1.x_range, title="Returns")
 p4.line(df.time, r_0, color='lightgray')
 p4.line(df.time, r_strat)
 p4.line(df.time, r_fee, color='red')
-p5 = figure(height=300, width=800, x_range=p1.x_range)
+p5 = figure(height=300, width=800, x_range=p1.x_range, title="Cumulative returns")
 p5.line(df.time, R_0, color='lightgray')
 p5.line(df.time, R_strat)
 p5.line(df.time, R_net, color='red')

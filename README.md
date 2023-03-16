@@ -1,5 +1,7 @@
 # kissbacktest
 
+Keep it simple and stupid backstesting trading strategies.
+
 Download charts from Cryptowatch:
 
 <p align="center"><img src="img/bokeh_plot_001.png" /></p>

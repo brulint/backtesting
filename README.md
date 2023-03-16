@@ -10,6 +10,8 @@ Dans l'interval $[t_{n-1}, t_n]$ le rendement vaut:
 
 $$r_0([t_{n-1},t_n]) = { Price(t_n)\over Price(t_{n-1}) }$$
 
+<p align="center"><img src="img/bokeh_plot_010.png" /></p>
+
 Cette définition du rendement est une simplification qui, dans le cadre du développement qui suit, est parfaitement satisfaisante. Petite particularité, le rendement neutre n'est pas 0, le neutre est 1: $Price(t_n) = Price(t_{n-1}) \rightarrow r_0 = 1$.
 
 Signaux et position:

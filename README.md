@@ -56,9 +56,9 @@ $$POS \equiv SIG_1 > 0$$
 
 Orders:
 
-$$ORDER_{buy}(t_n) \equiv \left( POS(t_{n-1}) = 0 \right) \space \\& \space \left( POS(t_n) = 1 \right)$$
+$$ORDER_{buy}(t_n) \equiv \Left( POS(t_{n-1}) = 0 \Right) \space \\& \space \Left( POS(t_n) = 1 \Right)$$
 
-$$ORDER_{sell}(t_n) \equiv \left( POS(t_{n-1}) = 1 \right) \space \\& \space \left( POS(t_n) = 0 \right)$$
+$$ORDER_{sell}(t_n) \equiv \Left( POS(t_{n-1}) = 1 \Right) \space \\& \space \Left( POS(t_n) = 0 \Right)$$
 
 <p align="center"><img src="img/bokeh_plot_007.png" /></p>
 

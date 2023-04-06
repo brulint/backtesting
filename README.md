@@ -56,9 +56,9 @@ $$POS \equiv SIG_1 > 0$$
 
 Orders:
 
-$$ORDER_{buy}(t) \equiv POS(t-1) = 0 \space \\& \space POS(t) = 1$$
+$$ORDER_{buy}(t) \equiv \( POS(t-1) = 0 \) \space \\& \space \( POS(t) = 1 \)$$
 
-$$ORDER_{sell}(t) \equiv POS(t-1) = 1 \space \\& \space POS(t) = 0$$
+$$ORDER_{sell}(t) \equiv \( POS(t-1) = 1 \) \space \\& \space \( POS(t) = 0 \)$$
 
 <p align="center"><img src="img/bokeh_plot_007.png" /></p>
 

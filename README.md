@@ -50,11 +50,17 @@ $$SIG_1(t_n) = \begin{cases} SIG_0(t_n) & \text{if } SIG_0(t_n) \ne 0 \\\\ SIG_0
 
 <p align="center"><img src="img/bokeh_plot_006.png" /></p>
 
-<p align="center"><img src="img/bokeh_plot_007.png" /></p>
-
 $$POS \equiv SIG_1 > 0$$
 
 <p align="center"><img src="img/bokeh_plot_006_2.png" /></p>
+
+$$ORDER_{buy}(t) \equiv POS(t-1) = 0 \and POS(t) = 1$$
+
+$$ORDER_{sell}(t) \equiv POS(t-1) = 1 \and POS(t) = 0$$
+
+<p align="center"><img src="img/bokeh_plot_007.png" /></p>
+
+
 
 Rendement:
 

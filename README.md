@@ -38,7 +38,7 @@ Position:
 
 $$POS(t_n) = \begin{cases} 1 & \text{if } SIG_{achat}(t_n) = 1 \\\\ 0 & \text{if } SIG_{vente}(t_n) = 1 \\\\ POS(t_{n-1}) & \text{else} \end{cases}$$
 
-<p align="center"><img src="img/bokeh_plot_007.png" /></p>
+<p align="center"><img src="img/bokeh_plot_006_2.png" /></p>
 
 Si, sur le papier, cette proposition est séduisante par sa simlicité, l’implémentation demande une étape intermédiaire:
 

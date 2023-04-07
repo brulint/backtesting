@@ -56,7 +56,7 @@ $$POS \equiv SIG_1 > 0$$
 
 Orders:
 
-$$ORDER_{buy}(t_n) \equiv \bigl( POS(t_{n-1}) = 0 \bigr) \space \\& \space \bigl( POS(t_n) = 1 \bigr)$$
+$$ORDER_{buy}(t_n) \equiv \Bigl( POS(t_{n-1}) = 0 \Bigr) \space \\& \space \bigl( POS(t_n) = 1 \bigr)$$
 
 $$ORDER_{sell}(t_n) \equiv \bigl( POS(t_{n-1}) = 1 \bigr) \space \\& \space \bigl( POS(t_n) = 0 \bigr)$$
 

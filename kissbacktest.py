@@ -12,6 +12,8 @@ columns = ['time','open','high','low','close','volume','count']
 df = pd.DataFrame(ohlc, columns=columns).astype(float)
 df['close'] = df.close.replace(to_replace=0, method='ffill')
 
+# df = pd.read_csv('btceur_4h.csv')[-1000:]
+
 # strategy
 RSI = ta.RSI(df.close,timeperiod=7)
 SIG_buy = RSI > 70
@@ -35,6 +37,8 @@ R_net = np.nancumprod(r_strat * r_fee)
 # graphic
 p1 = figure(height=300)
 p1.line(df.time, df.close)
+p1.triangle(df.time, df.close.where((POS == 1) & (POS.shift() == 0)), color = 'green', size = 7)
+p1.inverted_triangle(df.time,df.close.where((POS == 0) & (POS.shift() == 1)), color = 'red', size = 7)
 p2 =  figure(height=100)
 p2.line(df.time, RSI)
 p2.line(df.time, 70, color='green')

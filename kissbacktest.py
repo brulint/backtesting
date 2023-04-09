@@ -12,11 +12,14 @@ columns = ['time','open','high','low','close','volume','count']
 df = pd.DataFrame(ohlc, columns=columns).astype(float)
 df['close'] = df.close.replace(to_replace=0, method='ffill')
 
-# df = pd.read_csv('btceur_4h.csv')[-1000:]
+# df = pd.read_csv('btceur_4h.csv')astype(float)[-1000:]
+
 
 # strategy
-SIG_buy = # Signal d'achat
-SIG_sell = # Signal de vente
+RSI = ta.RSI(df.close,timeperiod=14)
+
+SIG_buy = ((RSI.shift() < 30) & (RSI > 30))# Signal d'achat
+SIG_sell = ((RSI.shift() > 70) & (RSI < 70))# Signal de vente
 
 # position
 SIG_0 = SIG_buy.astype(int) - SIG_sell.astype(int)
@@ -47,8 +50,6 @@ p3_2 = figure(height=100)
 p3_2.line(df.time, SIG_sell, color='red')
 p3_3 = figure(height=100)
 p3_3.line(df.time, SIG_0)
-p3_3_2 = figure(height=100)
-p3_3_2.line(df.time,SIG_1)
 p3_4 = figure(height=100)
 p3_4.line(df.time, POS)
 p4 = figure(height=150)
@@ -59,5 +60,5 @@ p5 = figure(height=300)
 p5.line(df.time, R_0, color='lightgray')
 p5.line(df.time, R_strat)
 p5.line(df.time, R_net, color='red')
-layout = column(p1, p2, p3_1, p3_2, p3_3, p3_3_2, p3_4, p4, p5)
+layout = column(p1, p2, p3_1, p3_2, p3_3, p3_4, p4, p5)
 show(layout)

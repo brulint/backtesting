@@ -3,8 +3,7 @@
 _Keep It Simple and Stupid backtesting coded with Python_
 
 To have explanations (in french but with mathematical semantics and graphic illustrations): 
-follow this [link](https://carboleum.github.io/jekyll/2022/08/10/Introduction-au-backtesting.html)
-[./kissbacktest.md](./kissbacktest.md)
+read [./kissbacktest.md](./kissbacktest.md)
 
 
 ## Install TALib

@@ -2,8 +2,7 @@
 
 _Keep It Simple and Stupid backtesting coded with Python_
 
-To have explanations (in french but with mathematical semantics and graphic illustrations): 
-read [./kissbacktest.md](./kissbacktest.md)
+To have explanations (in french but with mathematical semantics and graphic illustrations), please read [./kissbacktest.md](./kissbacktest.md)
 
 
 ## Install TALib

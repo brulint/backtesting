@@ -1,41 +1,64 @@
-# kissbacktest
+# Backtest
 
 Keep it simple and stupid backstesting trading strategies.
 
-## Signal
+## Disclamer
 
-Soit le cour d'un actif (ic BTC au 15/03/2023 - périodes de 4h):
+_Quod de futuris non est determinata omnino veritas._
+
+## Download data
+
+Soit le cour d'un actif (ici BTC au 15/03/2023 - périodes de 4h):
+
+```
+              time     open     high      low    close      volume         count
+0   1.664510e+09  19939.0  20055.9  19701.3  19790.4   57.345526  1.137666e+06
+1   1.664525e+09  19791.5  19999.0  19789.6  19910.7  138.585049  2.755094e+06
+2   1.664539e+09  19915.3  19999.0  19852.0  19938.2  282.864093  5.638161e+06
+3   1.664554e+09  19939.4  20575.0  19622.0  20183.5  817.298215  1.633128e+07
+4   1.664568e+09  20190.3  20303.0  19900.0  19900.0  200.272247  4.034421e+06
+...            ...      ...      ...      ...      ...         ...           ...
+995  1.678838e+09  23286.9  23381.5  22300.0  22990.8  432.824320  9.885106e+06
+996  1.678853e+09  22940.1  23282.0  22589.6  23048.8  116.567545  2.670718e+06
+997  1.678867e+09  22953.5  23116.2  22892.0  23037.4   87.865872  2.021310e+06
+998  1.678882e+09  23190.0  23250.0  22903.0  23084.9  373.454050  8.622002e+06
+999  1.678896e+09  23394.0  23899.9  23117.5  23374.4  616.774923  1.449521e+07
+
+[1000 rows x 7 columns]
+```
 
 <p align="center"><img src="img/bokeh_plot_001.png" /></p>
 
 
-Signaux et position:
+## Strategy
 
-La stratégie consiste à déterminer selon certains critères établis préalablement, les instants $t_n$ pendant lesquels le marché est favorable à l’achat ($SIG_{achat}(t_n) = 1$) ou à la vente ($SIG_{vente}(t_n) = 1$). Entre le $1^{er}$ signal d’achat et le $1^{er}$ signal de vente suivant, on est en position ($POS(t_n) = 1$).
+La stratégie consiste à déterminer selon certains critères établis préalablement, les instants $t_n$ pendant lesquels le marché est favorable à l’achat ($SIG_{buy}(t_n) = 1$) ou à la vente ($SIG_{sell}(t_n) = 1$). Entre le $1^{er}$ signal d’achat et le $1^{er}$ signal de vente suivant, on est en position ($POS(t_n) = 1$).
 
-$SIG_{achat}$:
+Stratégie basée sur le RSI.
+
+<p align="center"><img src="img/bokeh_plot_002.png" /></p>
+
+On observe que une période de surachat ($RSI_7 > 70$) augure d'un marché haussier et une zone de survente ($RSI_7 < 30$) un marché baissier.
+
+```python
+SIG_buy = RSI_7 > 70
+SIG_sell = RSI_7 < 30
+```
+$SIG_{buy}$:
 
 <p align="center"><img src="img/bokeh_plot_003.png" /></p>
 
-$SIG_{vente}$:
+$SIG_{sell}$:
 
 <p align="center"><img src="img/bokeh_plot_004.png" /></p>
 
-
-
-$$SIG_0(t_n) = SIG_{achat}(t_n) - SIG_{vente}(t_n)$$
+$SIG_0 = SIG_{buy} - SIG_{sell}$
 
 <p align="center"><img src="img/bokeh_plot_005.png" /></p>
 
-$$POS(t_n) = \begin{cases} SIG_0(t_n) & \text{if } SIG_0(t_n) \ne 0 \\\\ SIG_0(t_{n-1}) & \text{else} \end{cases}$$
+$POS(t_n) = \begin{cases} SIG_0(t_n) & \text{if } SIG_0(t_n) \ne 0 \\\\ SIG_0(t_{n-1}) & \text{else} \end{cases}$
 
 <p align="center"><img src="img/bokeh_plot_006.png" /></p>
-
-Orders:
-
-$$ORDER_{buy}(t_n) \equiv \Bigl( POS(t_{n-1}) = -1 \Bigr) \space \\& \space \Bigl( POS(t_n) = 1 \Bigr)$$
-
-$$ORDER_{sell}(t_n) \equiv \Bigl( POS(t_{n-1}) = 1 \Bigr) \space \\& \space \Bigl( POS(t_n) = -1 \Bigr)$$
 
 <p align="center"><img src="img/bokeh_plot_007.png" /></p>
 

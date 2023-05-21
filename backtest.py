@@ -6,26 +6,21 @@ import pandas as pd
 import talib as ta
 from bokeh.plotting import figure,show
 from bokeh.layouts import column,row
+from bokeh.models import DatetimeTickFormatter
 
-# download data from Cryptowatch
-url = f'https://api.cryptowat.ch/markets/kraken/btceur/ohlc'
-ohlc = requests.get(url).json()['result'][str(4*60*60)] # 4h
-columns = ['time','open','high','low','close','volume','count']
-df = pd.DataFrame(ohlc, columns=columns).astype(float)
-df['close'] = df.close.replace(to_replace=0, method='ffill')
-
-# df = pd.read_csv('btceur_4h.csv').astype(float)
+df = pd.read_csv('btceur-4h').astype(float)
+df['date'] = pd.to_datetime(df['time'],unit='s') # si nécessaire
 
 # strategy
-RSI = ta.RSI(df.close, timeperiod = 7)
-SIG_buy = RSI > 70
-SIG_sell = RSI < 30
+RSI = ta.RSI(df.close, timeperiod = 14)
+SIG_buy = (RSI.shift() < 30) & (RSI > 30)
+SIG_sell = (RSI.shift() > 70) & (RSI < 70)
 
 # position
 SIG_0 = SIG_buy.astype(int) - SIG_sell.astype(int)
 POS = SIG_0.where(SIG_0 != 0).ffill()
-POS_in = df.close.where((POS == 1) & (POS.shift() == -1))
-POS_out = df.close.where((POS == -1) & (POS.shift() == 1))
+POS_buy = df.close.where((POS == 1) & (POS.shift() == -1))
+POS_sell = df.close.where((POS == -1) & (POS.shift() == 1))
 
 # return
 r_0 = df.close / df.close.shift()
@@ -38,29 +33,30 @@ R_strat = np.nancumprod(r_strat)
 R_net = np.nancumprod(r_strat * r_fee)
 
 # graphic
-p1 = figure(height=325, width=750) # ,x_axis_type='datetime')
-p1.line(df.time, df.close)
-p1.triangle(df.time, POS_in, color='green', size=7)
-p1.inverted_triangle(df.time, POS_out, color='red', size=7)
-p2 =  figure(height=125, width=750)
-p2.line(df.time, RSI)
-p2.line(df.time, 70, color='green')
-p2.line(df.time, 30, color='red')
-p3_1 = figure(height=125, width=750)
-p3_1.line(df.time, SIG_buy, color='green')
-p3_2 = figure(height=125, width=750)
-p3_2.line(df.time, SIG_sell, color='red')
-p3_3 = figure(height=125, width=750)
-p3_3.line(df.time, SIG_0)
-p3_4 = figure(height=125, width=750)
-p3_4.line(df.time, POS)
-p4 = figure(height=150, width=750)
-p4.line(df.time, r_0, color='lightgray')
-p4.line(df.time, r_strat)
-p4.line(df.time, r_fee, color='red')
-p5 = figure(height=325, width=750)
-p5.line(df.time, R_0, color='lightgray')
-p5.line(df.time, R_strat)
-p5.line(df.time, R_net, color='red')
-layout = column(p1, p2, p3_1, p3_2, p3_3, p3_4, p4, p5)
+xformatter = DatetimeTickFormatter(hours="%H:%M", days="%d/%m", months="%m/%Y", years="%Y")
+p1 = figure(height=325, width=750, x_axis_type='datetime')
+p1.line(df.date, df.close)
+p1.triangle(df.date, POS_buy, color = 'green', size = 7)
+p1.inverted_triangle(df.date, POS_sell, color = 'red', size = 7)
+p1.xaxis[0].formatter = xformatter
+p2 = figure(height=125, width=750, x_axis_type='datetime', x_range=p1.x_range)
+p2.line(df.date, RSI)
+p2.line(df.date, 70, color='green')
+p2.line(df.date, 30, color='red')
+p2.xaxis[0].formatter = xformatter
+p3 = figure(height=125, width=750, x_axis_type='datetime', x_range=p1.x_range)
+p3.line(df.date, POS, color='gray')
+p3.line(df.date, SIG_0)
+p3.xaxis[0].formatter = xformatter
+p4 = figure(height=150, width=750, x_axis_type='datetime', x_range=p1.x_range)
+p4.line(df.date, r_0, color='lightgray')
+p4.line(df.date, r_strat)
+p4.line(df.date, r_fee, color='red')
+p4.xaxis[0].formatter = xformatter
+p5 = figure(height=325, width=750, x_axis_type='datetime', x_range=p1.x_range)
+p5.line(df.date, R_0, color='lightgray')
+p5.line(df.date, R_strat)
+p5.line(df.date, R_net, color='red')
+p5.xaxis[0].formatter = xformatter
+layout = column(p1, p2, p3, p4, p5)
 show(layout)

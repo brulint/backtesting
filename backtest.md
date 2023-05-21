@@ -8,70 +8,71 @@ _Quod de futuris non est determinata omnino veritas._
 
 ## Download data
 
-Soit le cour d'un actif (ici BTC au 15/03/2023 - périodes de 4h):
+Soit le cour d'un actif (ici BTC au 20/05/2023 - périodes de 4h):
 
+```python
+                    date     open     high      low    close
+0    2022-07-08 04:00:00  21264.0  22050.0  21214.8  21769.9
+1    2022-07-08 08:00:00  21770.0  21919.1  21400.1  21555.3
+2    2022-07-08 12:00:00  21552.7  21582.4  21075.0  21239.8
+3    2022-07-08 16:00:00  21249.2  21718.2  20890.6  21567.3
+4    2022-07-08 20:00:00  21567.3  21567.4  21192.7  21417.7
+...                  ...      ...      ...      ...      ...
+1896 2023-05-20 04:00:00  24885.0  24911.7  24838.4  24865.0
+1897 2023-05-20 08:00:00  24869.8  24874.4  24854.0  24869.6
+1898 2023-05-20 12:00:00  24859.5  24916.6  24856.5  24898.2
+1899 2023-05-20 16:00:00  24890.0  24946.8  24882.9  24909.2
+1900 2023-05-20 20:00:00  24951.2  25121.7  24919.9  25121.7
+
+[1901 rows x 5 columns]
 ```
-              time     open     high      low    close      volume         count
-0   1.664510e+09  19939.0  20055.9  19701.3  19790.4   57.345526  1.137666e+06
-1   1.664525e+09  19791.5  19999.0  19789.6  19910.7  138.585049  2.755094e+06
-2   1.664539e+09  19915.3  19999.0  19852.0  19938.2  282.864093  5.638161e+06
-3   1.664554e+09  19939.4  20575.0  19622.0  20183.5  817.298215  1.633128e+07
-4   1.664568e+09  20190.3  20303.0  19900.0  19900.0  200.272247  4.034421e+06
-...            ...      ...      ...      ...      ...         ...           ...
-995  1.678838e+09  23286.9  23381.5  22300.0  22990.8  432.824320  9.885106e+06
-996  1.678853e+09  22940.1  23282.0  22589.6  23048.8  116.567545  2.670718e+06
-997  1.678867e+09  22953.5  23116.2  22892.0  23037.4   87.865872  2.021310e+06
-998  1.678882e+09  23190.0  23250.0  22903.0  23084.9  373.454050  8.622002e+06
-999  1.678896e+09  23394.0  23899.9  23117.5  23374.4  616.774923  1.449521e+07
 
-[1000 rows x 7 columns]
-```
-
-<p align="center"><img src="img/bokeh_plot_001.png" /></p>
-
+<p align="center"><img src="img/20230520_001.png" /></p>
 
 ## Strategy
 
-La stratégie consiste à déterminer selon certains critères établis préalablement, les instants $t_n$ pendant lesquels le marché est favorable à l’achat ($SIG_{buy}(t_n) = 1$) ou à la vente ($SIG_{sell}(t_n) = 1$). Entre le $1^{er}$ signal d’achat et le $1^{er}$ signal de vente suivant, on est en position ($POS(t_n) = 1$).
+Intuitivement, un cours qui commence à remonter est un signal d'achat et un cours qui commence à redescendre est un signal de vente. Pour ça, le RSI est notre ami.
 
-Stratégie basée sur le RSI.
+<p align="center"><img src="img/20230520_002.png" /></p>
 
-<p align="center"><img src="img/bokeh_plot_002.png" /></p>
+Signaux:
 
-On observe que une période de surachat ($RSI_7 > 70$) augure d'un marché haussier et une zone de survente ($RSI_7 < 30$) un marché baissier.
+$$
+\begin{align} SIG_{buy} &= \big\[ \  RSI_{14}(t_{n-1}) < 30 \  \big\]  \  \\& \  \big\[ \  RSI_{14}(t_n) > 30 \  \big\]
+        \\\\ SIG_{sell} &= \big\[ \  RSI_{14}(t_{n-1}) > 70 \  \big\] \  \\& \  \big\[ \  RSI_{14}(t_n) < 70 \  \big\]
+        \\\\ SIG(t_n)   &= \begin{cases} 1 & \Leftarrow  SIG_{buy} = 1
+                                   \\\\ -1 & \Leftarrow  SIG_{sell} = 1
+                           \end{cases}
+\end{align}
+$$
+
+<p align="center"><img src="img/20230520_003.png" /></p>
+
+Position: 
+
+$$POS(t_n) = \begin{cases} SIG(t_n) & \Leftarrow SIG(t_n) \neq 0 \\\\ POS(t_{n-1}) & \end{cases}$$
+
+<p align="center"><img src="img/20230520_004.png" /></p>
+
+
+En python:
 
 ```python
-SIG_buy = RSI_7 > 70
-SIG_sell = RSI_7 < 30
+SIG_buy = (RSI.shift() < 30) & (RSI > 30)
+SIG_sell = (RSI.shift() > 70) & (RSI < 70)
+SIG = SIG_buy.astype(int) - SIG_sell.astype(int)
+POS = SIG_0.where(SIG_0 != 0).ffill()
+POS_buy = df.close.where((POS == 1) & (POS.shift() == -1))
+POS_sell = df.close.where((POS == -1) & (POS.shift() == 1))
 ```
-$SIG_{buy}$:
 
-<p align="center"><img src="img/bokeh_plot_003.png" /></p>
-
-$SIG_{sell}$:
-
-<p align="center"><img src="img/bokeh_plot_004.png" /></p>
-
-$SIG_0 = SIG_{buy} - SIG_{sell}$
-
-<p align="center"><img src="img/bokeh_plot_005.png" /></p>
-
-$POS(t_n) = \begin{cases} SIG_0(t_n) & \text{if } SIG_0(t_n) \ne 0 \\\\ SIG_0(t_{n-1}) & \text{else} \end{cases}$
-
-<p align="center"><img src="img/bokeh_plot_006.png" /></p>
-
-<p align="center"><img src="img/bokeh_plot_007.png" /></p>
+<p align="center"><img src="img/20230520_005.png" /></p>
 
 ## Rendement
 
-Dans l'interval $[t_{n-1}, t_n]$ le rendement vaut:
+Rendement en HODL:
 
-$$r_0([t_{n-1},t_n]) = { Price(t_n)\over Price(t_{n-1}) }$$
-
-<p align="center"><img src="img/bokeh_plot_010.png" /></p>
-
-Cette définition du rendement est une simplification qui, dans le cadre du développement qui suit, est parfaitement satisfaisante. Petite particularité, le rendement neutre n'est pas 0, le neutre est 1: $Price(t_n) = Price(t_{n-1}) \rightarrow r_0 = 1$.
-
+$$r_0(t_n) = r_0([t_{n-1},t_n]) = { Price(t_n)\over Price(t_{n-1}) }$$
 
 Interprétation du signal $POS$:
 
@@ -79,9 +80,9 @@ $$\begin{array}{cc|c} POS(t_{n-1}) & POS(t_n) & r_{strat}([t_{n-1},t_n]) \\\\ \h
 
 Rendement de la stratégie:
 
-$$r_{strat}(t_n) = \begin{cases} r_0(t_n) & \text{if } POS(t_{n-1}) = 1 \\\\ 1 & \text{else} \end{cases}$$
+$$r_{strat}(t_n) = r_{strat}([t_{n-1},t_n]) = \begin{cases} r_0(t_n) & \text{if } POS(t_{n-1}) = 1 \\\\ 1 & \text{else} \end{cases}$$
 
-<p align="center"><img src="img/bokeh_plot_008.png" /></p>
+<p align="center"><img src="img/20230520_006.png" /></p>
 
 Sans oublier les fees: Lors de chaque transaction (achat et vente), la plateforme prend un fee équivalent à $fee%$:
 
@@ -93,4 +94,11 @@ Rendement cumulé:
 
 $$R(t_n) = \prod_{i=1}^{t_n} \biggl( r_{strat}(i) \times r_{fee}(i) \biggr)$$
 
-<p align="center"><img src="img/bokeh_plot_009.png" /></p>
+<p align="center"><img src="img/20230520_007.png" /></p>
+
+Avec:
+
+  - en grisé, le rendement cumulé en HODL
+  - en bleu, le rendement brut cumulé de la stratégie
+  - en rouge, le rendement net cumulé de la stratégie
+

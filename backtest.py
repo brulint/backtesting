@@ -8,17 +8,24 @@ from bokeh.plotting import figure,show
 from bokeh.layouts import column,row
 from bokeh.models import DatetimeTickFormatter
 
-def backtest (df, SIG_buy, SIG_sell):
+def backtest (df):
+    
+    # df: date, close, SIG_buy, SIG_sell
+    # df: date, close, POS
+    
     #position
-    SIG_0 = SIG_buy.astype(int) - SIG_sell.astype(int)
-    POS = SIG_0.where(SIG_0 != 0).ffill()
-    POS_buy = df.close.where((POS == 1) & (POS.shift() == -1))
-    POS_sell = df.close.where((POS == -1) & (POS.shift() == 1))
+    if not 'POS' in df:
+        SIG_0 = df.SIG_buy.astype(int) - df.SIG_sell.astype(int)
+        POS = SIG_0.where(SIG_0 != 0).ffill()
+        df['POS'] = POS > 0
+
+    POS_buy = df.close.where((df.POS == 1) & (df.POS.shift() == 0))
+    POS_sell = df.close.where((df.POS == 0) & (df.POS.shift() == 1))
 
     # return
     r_0 = df.close / df.close.shift()
-    r_strat = np.where(POS.shift() == 1, r_0, 1)
-    r_fee = np.where(POS.shift() + POS == 0, 1-0.0025, 1)
+    r_strat = np.where(df.POS.shift() == 1, r_0, 1)
+    r_fee = np.where(df.POS.shift() + df.POS == 1, 1-0.0025, 1)
 
     # cumulative return
     R_0 = np.nancumprod(r_0)
@@ -38,7 +45,7 @@ def backtest (df, SIG_buy, SIG_sell):
     #p2.line(df.date, 30, color='red')
     #p2.xaxis[0].formatter = xformatter
     p3 = figure(height=125, width=750, x_axis_type='datetime', x_range=p1.x_range)
-    p3.line(df.date, POS)
+    p3.line(df.date, df.POS)
     #p3.line(df.date, SIG_0)
     p3.xaxis[0].formatter = xformatter
     p4 = figure(height=150, width=750, x_axis_type='datetime', x_range=p1.x_range)
@@ -55,11 +62,16 @@ def backtest (df, SIG_buy, SIG_sell):
     show(layout)
 
 df = pd.read_csv('btceur-4h.csv').astype(float)
-df['date'] = pd.to_datetime(df['time'],unit='s') # si nécessaire
+df['date'] = pd.to_datetime(df.time, unit='s') # si nécessaire
 
-# strategy
+# strategy 1
+#SMA_14 = ta.SMA(df.close, timeperiod = 14)
+#SMA_200 = ta.SMA(df.close, timeperiod = 200)
+#df['POS'] = SMA_200 < SMA_14
+
+#strategy 2
 RSI = ta.RSI(df.close, timeperiod = 14)
-SIG_buy = (RSI.shift() < 30) & (RSI > 30)
-SIG_sell = (RSI.shift() > 70) & (RSI < 70)
+df['SIG_buy'] = (RSI.shift() < 30) & (RSI > 30)
+df['SIG_sell'] = (RSI.shift() > 70) & (RSI < 70)
 
-backtest (df, SIG_buy, SIG_sell)
+backtest (df)

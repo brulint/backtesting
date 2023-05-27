@@ -5,8 +5,7 @@ import numpy as np
 import pandas as pd
 import talib as ta
 
-# df = pd.read_csv('btceur_4h.csv').astype(float)
-df = pd.read_csv('http://lintermans.all2all.org/cgi-bin/get-chart.php?chart=btceur-4h')
+df = pd.read_csv('btceur_4h.csv').astype(float)
 
 # strategy
 RSI = ta.RSI(df.close, timeperiod = 14)

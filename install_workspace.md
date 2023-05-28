@@ -32,8 +32,6 @@ sudo make install
 sudo pip3 install TA-lib
 ```
 
-![20230528-000](https://github.com/brulint/trade_with_python/assets/102539902/378d6880-6ea0-4d43-a192-6ca237f42f7a)
-<p align="center"><img src="img/20230528-000 (1).png" /></p>
 
 
 

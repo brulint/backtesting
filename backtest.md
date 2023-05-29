@@ -71,11 +71,11 @@ Avec:
 
 ## Advanced Deathcross
 
-<p align="center"><img src="img/20230529-0353.png" /></p>
-<p align="center"><img src="img/20230529-0353.png" /></p>
-<p align="center"><img src="img/20230529-0353.png" /></p>
-<p align="center"><img src="img/20230529-0353.png" /></p>
-<p align="center"><img src="img/20230529-0353.png" /></p>
+<p align="center"><img src="img/20230529-0438.png" /></p>
+<p align="center"><img src="img/20230529-0439.png" /></p>
+<p align="center"><img src="img/20230529-0440.png" /></p>
+<p align="center"><img src="img/20230529-0441.png" /></p>
+<p align="center"><img src="img/20230529-0442.png" /></p>
 
 
 

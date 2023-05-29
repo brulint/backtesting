@@ -27,17 +27,20 @@ Soit le cour d'un actif (ici BTC au 29/05/2023 - périodes de 2h):
 [2901 rows x 7 columns]
 ```
 
-<p align="center"><img src="img/20230520_001.png" /></p>
+<p align="center"><img src="img/20260529-0349.png" /></p>
 
 ## Strategy
 
-Intuitivement, un cours qui commence à remonter est un signal d'achat et un cours qui commence à redescendre est un signal de vente. Pour ça, le RSI est notre ami.
+### Deathcross
 
-<p align="center"><img src="img/20230520_002.png" /></p>
+$$ Position \equiv EMA_{20} > SMA_{200} $$
 
-Signaux:
+<p align="center"><img src="img/20260529-0350.png" /></p>
+
+<p align="center"><img src="img/20260529-0351.png" /></p>
 
 $$
+position = \begin{cases} 1
 \begin{align} SIG_{buy} &= \big\[ \  RSI_{14}(t_{n-1}) < 30 \  \big\]  \  \\& \  \big\[ \  RSI_{14}(t_n) > 30 \  \big\]
         \\\\ SIG_{sell} &= \big\[ \  RSI_{14}(t_{n-1}) > 70 \  \big\] \  \\& \  \big\[ \  RSI_{14}(t_n) < 70 \  \big\]
         \\\\ SIG(t_n)   &= \begin{cases} 1 & \Leftarrow  SIG_{buy} = 1

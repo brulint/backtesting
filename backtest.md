@@ -77,5 +77,12 @@ Avec:
 <p align="center"><img src="img/20230529-0441.png" /></p>
 <p align="center"><img src="img/20230529-0442.png" /></p>
 
+## Trend following (RSI)
+
+<p align="center"><img src="img/20230529-0459.png" /></p>
+<p align="center"><img src="img/20230529-0500.png" /></p>
+<p align="center"><img src="img/20230529-0501.png" /></p>
+<p align="center"><img src="img/20230529-0502.png" /></p>
+<p align="center"><img src="img/20230529-0503.png" /></p>
 
 

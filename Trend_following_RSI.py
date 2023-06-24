@@ -7,14 +7,13 @@ import pandas as pd
 import talib as ta
 
 # df = pd.read_csv('btceur_4h.csv').astype(float)
-pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-4h.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-4h.csv')
 
 # strategy
-
 RSI = ta.RSI(df.close, timeperiod = 14)
-signal_long_buy = RSI > 70
+signal_long_buy = RSI > 80
 signal_long_sell = RSI < 50
-signal_short_sell = RSI < 30
+signal_short_sell = RSI < 20
 signal_short_buy = RSI > 50
 
 # position
@@ -24,10 +23,10 @@ position_long = signal_long.where(signal_long != 0).ffill() > 0
 position_short = signal_short.where(signal_short != 0).ffill() > 0
 position = position_long.astype(int) - position_short.astype(int)
 
-position_long_in = df.close.where((position == 1) & (position.shift() == 0))
-position_long_out = df.close.where((position == 0) & (position.shift() == 1))
-position_short_in = df.close.where((position == -1) & (position.shift() == 0))
-position_short_out = df.close.where((position == 0) & (position.shift() == -1))
+position_long_in = df.close.where((position == 1) & (position.shift() != 1))
+position_long_out = df.close.where((position != 1) & (position.shift() == 1))
+position_short_in = df.close.where((position == -1) & (position.shift() != -1))
+position_short_out = df.close.where((position != -1) & (position.shift() == -1))
 
 
 # return

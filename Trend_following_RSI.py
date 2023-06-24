@@ -69,6 +69,8 @@ p3.triangle(df.date, position_long_in, color='cyan', size=7)
 p3.inverted_triangle(df.date, position_long_out, color='blue', size=7)
 p3.inverted_triangle(df.date, position_short_in, color='orange', size=7)
 p3.triangle(df.date, position_short_out, color='red', size=7)
+p3.line(df.date, np.where(position == 1, df.close, np.nan), color='green')
+p3.line(df.date, np.where(position == -1, df.close, np.nan), color='red')
 
 p4 = figure(height=150, width=900, x_range=p1.x_range)
 p4.xaxis[0].formatter = xformatter

@@ -83,7 +83,6 @@ Avec:
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(2).png" /></p>
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(3).png" /></p>
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(4).png" /></p>
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(5).png" /></p>
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(6).png" /></p>
 
 

@@ -32,7 +32,7 @@ position_short_out = df.close.where((position != -1) & (position.shift() == -1))
 # return
 r_0 = df.close / df.close.shift()
 r_strat = r_0 ** position.shift().fillna(0).astype(int)
-r_fee = np.where(abs(position.shift() + position) == 1, 1-0.0025, 1)
+r_fee = np.where(position.shift() !=  position, 1-(0.0025*(abs(position.shift())+abs(position))), 1)
 
 # cumulative return
 R_0 = np.nancumprod(r_0)

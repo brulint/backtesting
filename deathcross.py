@@ -5,7 +5,7 @@ import pandas as pd
 import talib as ta
 
 # df = pd.read_csv('btceur_4h.csv').astype(float)
-df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-4h.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
 
 # strategy
 

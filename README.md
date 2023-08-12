@@ -78,6 +78,15 @@ Avec:
   - en bleu, le rendement brut cumulé de la stratégie
   - en rouge, le rendement net cumulé de la stratégie
 
+### Trend following RSI
+
+<p align="center"><img src="img/bokeh_plot(8).png" /></p>
+<p align="center"><img src="img/bokeh_plot(9).png" /></p>
+<p align="center"><img src="img/bokeh_plot(10).png" /></p>
+<p align="center"><img src="img/bokeh_plot(11).png" /></p>
+<p align="center"><img src="img/bokeh_plot(12).png" /></p>
+<p align="center"><img src="img/bokeh_plot(13).png" /></p>
+
 ### Advanced Deathcross
 
 <p align="center"><img src="img/20230529-0438.png" /></p>

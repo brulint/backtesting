@@ -39,7 +39,7 @@ Rendement cumulé:
 
 $$R_0(t_n) = \prod_{i=1}^{t_n} \biggl( r_0(i) \biggr)$$
 
-Position:
+Position (définie par la stratégie):
 
 $$POS(t_n) = \begin{cases} 1 & \text{position ouverte} \\\\ 0 & \text{position fermé} \end{cases}$$
 
@@ -47,7 +47,7 @@ Rendement de la stratégie:
 
 $$r_{strat}(t_n) = r_0(t_n) \times POS(t_{n-1})$$
 
-Fees:
+Fees (sur achat et vente):
 
 $$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 1 & \text{else} \end{cases}$$
 
@@ -55,11 +55,9 @@ Rendement cumulé:
 
 $$R(t_n) = \prod_{i=1}^{t_n} \biggl( r_{strat}(i) \times r_{fee}(i) \biggr)$$
 
-### Deathcross
+## Deathcross
 
-## Position
-
-$$ Position(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
+$$ POS(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
 
 <p align="center"><img src="img/20230529-0350.png" /></p>
 
@@ -80,7 +78,7 @@ Avec:
   - en bleu, le rendement brut cumulé de la stratégie
   - en rouge, le rendement net cumulé de la stratégie
 
-## Advanced Deathcross
+### Advanced Deathcross
 
 <p align="center"><img src="img/20230529-0438.png" /></p>
 <p align="center"><img src="img/20230529-0439.png" /></p>
@@ -88,7 +86,7 @@ Avec:
 <p align="center"><img src="img/20230529-0441.png" /></p>
 <p align="center"><img src="img/20230529-0442.png" /></p>
 
-## Trend following (RSI)
+### Trend following (RSI)
 
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(1).png" /></p>
 <p align="center"><img src="img/Trend_following_RSI/bokeh_plot(2).png" /></p>

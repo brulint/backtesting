@@ -37,7 +37,7 @@ $$r_0(t_n) = { Price(t_n)\over Price(t_{n-1}) }$$
 
 Rendement cumulé:
 
-$$R_0(t_n) = \prod_{i=1}^{t_n} \biggl( r_0(i))$$
+$$R_0(t_n) = \prod_{i=1}^{t_n} \biggl( r_0(i) \biggr)$$
 
 Position:
 
@@ -45,11 +45,11 @@ $$POS(t_n) = \begin{cases} 1 & \text{position ouverte} \\\\ 0 & \text{position f
 
 Rendement de la stratégie:
 
-$$r_{strat}(t_n) = \begin{cases} r_0(t_n) & \text{if } Position(t_{n-1}) = 1 \\\\ 1 & \text{else} \end{cases}$$
+$$r_{strat}(t_n) = r_0(t_n) \times POS(t_{n-1})$$
 
 Fees:
 
-$$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } Position(t_{n-1}) \ne Position(t_n) \\\\ 1 & \text{else} \end{cases}$$
+$$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 1 & \text{else} \end{cases}$$
 
 Rendement cumulé:
 

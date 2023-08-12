@@ -29,6 +29,32 @@ Soit le cour d'un actif (ici BTC au 29/05/2023 - périodes de 2h):
 
 <p align="center"><img src="img/20230529-0349.png" /></p>
 
+### Rendement
+
+Rendement en HODL:
+
+$$r_0(t_n) = { Price(t_n)\over Price(t_{n-1}) }$$
+
+Rendement cumulé:
+
+$$R_0(t_n) = \prod_{i=1}^{t_n} \biggl( r_0(i))$$
+
+Position:
+
+$$POS(t_n) = \begin{cases} 1 & \text{position ouverte} \\\\ 0 & \text{position fermé} \end{cases}$$
+
+Rendement de la stratégie:
+
+$$r_{strat}(t_n) = \begin{cases} r_0(t_n) & \text{if } Position(t_{n-1}) = 1 \\\\ 1 & \text{else} \end{cases}$$
+
+Fees:
+
+$$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } Position(t_{n-1}) \ne Position(t_n) \\\\ 1 & \text{else} \end{cases}$$
+
+Rendement cumulé:
+
+$$R(t_n) = \prod_{i=1}^{t_n} \biggl( r_{strat}(i) \times r_{fee}(i) \biggr)$$
+
 ### Deathcross
 
 ## Position
@@ -41,25 +67,10 @@ $$ Position(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
 
 <p align="center"><img src="img/20230529-0352.png" /></p>
 
-### Rendement
 
-Rendement en HODL:
-
-$$r_0(t_n) = { Price(t_n)\over Price(t_{n-1}) }$$
-
-Rendement de la stratégie:
-
-$$r_{strat}(t_n) = \begin{cases} r_0(t_n) & \text{if } Position(t_{n-1}) = 1 \\\\ 1 & \text{else} \end{cases}$$
-
-Fees:
-
-$$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } Position(t_{n-1}) \ne Position(t_n) \\\\ 1 & \text{else} \end{cases}$$
 
 <p align="center"><img src="img/20230529-0353.png" /></p>
 
-Rendement cumulé:
-
-$$R(t_n) = \prod_{i=1}^{t_n} \biggl( r_{strat}(i) \times r_{fee}(i) \biggr)$$
 
 <p align="center"><img src="img/20230529-0354.png" /></p>
 

@@ -57,7 +57,7 @@ $$r_{fee}(t_n) = \begin{cases} fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 0
 
 Rendement net de la statégie:
 
-$$r_{net}(t_n) = r_{strat}(t_n) - r_{fee}(t_n)
+$$r_{net}(t_n) = r_{strat}(t_n) - r_{fee}(t_n)$$
 
 <p align="center"><img src="img/deathcross(3).png" /></p>
 
@@ -67,7 +67,7 @@ $$R_0(t_n) = \sum_{i=1}^{t_n} \biggl( r_0(i) \biggr)$$
 
 Rendement cumulé stratégie:
 
-$$R(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
+$$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
 
 <p align="center"><img src="img/deathcross(4).png" /></p>
 

@@ -6,7 +6,6 @@ import numpy as np
 import pandas as pd
 import talib as ta
 
-# df = pd.read_csv('btceur_4h.csv').astype(float)
 df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
 
 # strategy
@@ -21,23 +20,21 @@ signal_long = signal_long_buy.astype(int) - signal_long_sell.astype(int)
 signal_short = signal_short_sell.astype(int) - signal_short_buy.astype(int) 
 position_long = signal_long.where(signal_long != 0).ffill() > 0
 position_short = signal_short.where(signal_short != 0).ffill() > 0
-position = position_long.astype(int) - position_short.astype(int)
-
+df['position'] = position_long.astype(int) - position_short.astype(int)
 position_long_in = df.close.where((position == 1) & (position.shift() != 1))
 position_long_out = df.close.where((position != 1) & (position.shift() == 1))
 position_short_in = df.close.where((position == -1) & (position.shift() != -1))
 position_short_out = df.close.where((position != -1) & (position.shift() == -1))
 
 
-# return
-r_0 = df.close / df.close.shift()
-r_strat = r_0 ** position.shift().fillna(0).astype(int)
-r_fee = np.where(position.shift() !=  position, 1-(0.0025*(abs(position.shift())+abs(position))), 1)
+# returns
+df['r_hodl'] = np.log( df['close'] / df['close'].shift() )
+df['r_strat'] = df['position'].shift() * df['r_hodl']
+df['r_fee'] = np.where(df['position'] != df['position'].shift(), 0.0025, 0)
+df['r_net'] = df['r_strat'] - df['r_fee']
 
-# cumulative return
-R_0 = np.nancumprod(r_0)
-R_strat = np.nancumprod(r_strat)
-R_net = np.nancumprod(r_strat * r_fee)
+# cumulative
+df[['R_hodl','R_strat','R_fee','R_net']] = df[['r_hodl','r_strat','r_fee','r_net']].cumsum()
 
 # graphic
 from bokeh.plotting import figure,show

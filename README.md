@@ -86,18 +86,6 @@ $$ SIG_{sell}(t_n) \equiv RSI_{14}(t_n) < 30 $$
 <p align="center"><img src="png/Trend_following_RSI_r_strat.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_R_cumul.png" /></p>
 
-### Advanced Deathcross
-
-$$ POS_{long} \equiv EMA_{15}^{close} > SMA_{50}^{high} \times 1.01 $$
-
-$$ POS_{short} \equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01 $$
-
-<p align="center"><img src="png/Advanced_Deathcross.png" /></p>
-<p align="center"><img src="png/Advanced_Deathcross_MVT.png" /></p>
-<p align="center"><img src="png/Advanced_Deathcross_POS.png" /></p>
-<p align="center"><img src="png/Advanced_Deathcross_r_strat.png" /></p>
-<p align="center"><img src="png/Advanced_Deathcross_R_cumul.png" /></p>
-
 ### Advanced Trend following (RSI)
 
 $$ SIG_{buy}^{long} \equiv RSI_{14} > 80 $$
@@ -112,6 +100,20 @@ $$ SIG_{buy}^{short} \equiv RSI_{14} > 50 $$
 <p align="center"><img src="png/Advanced_Trend_following_POS.png" /></p>
 <p align="center"><img src="png/Advanced_Trend_following_r_strat.png" /></p>
 <p align="center"><img src="png/Advanced_Trend_following_R_cumul.png" /></p>
+
+### Advanced Deathcross
+
+$$ POS_{long} \equiv EMA_{15}^{close} > SMA_{50}^{high} \times 1.01 $$
+
+$$ POS_{short} \equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01 $$
+
+<p align="center"><img src="png/Advanced_Deathcross.png" /></p>
+<p align="center"><img src="png/Advanced_Deathcross_MVT.png" /></p>
+<p align="center"><img src="png/Advanced_Deathcross_POS.png" /></p>
+<p align="center"><img src="png/Advanced_Deathcross_r_strat.png" /></p>
+<p align="center"><img src="png/Advanced_Deathcross_R_cumul.png" /></p>
+
+
 
 
 

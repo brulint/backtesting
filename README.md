@@ -92,11 +92,10 @@ Avec:
 
 ### Trend following (RSI)
 
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(1).png" /></p>
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(2).png" /></p>
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(3).png" /></p>
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(4).png" /></p>
-<p align="center"><img src="img/Trend_following_RSI/bokeh_plot(6).png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_RSI_MVT.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_RSI_POS.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_RSI_r_strat.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_RSI_R_cumul.png" /></p>
 
 
 

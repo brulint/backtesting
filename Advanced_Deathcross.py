@@ -14,7 +14,7 @@ SMA_low_40_offset = ta.SMA(df.low, timeperiod = 50) / 1.01
 
 position_long = EMA_15 > SMA_high_40_offset
 position_short = EMA_15 < SMA_low_40_offset
-position = position_long.astype(int) - position_short.astype(int)
+df['position'] = position_long.astype(int) - position_short.astype(int)
 position_long_in = df.close.where((position == 1) & (position.shift() == 0))
 position_long_out = df.close.where((position == 0) & (position.shift() == 1))
 position_short_in = df.close.where((position == -1) & (position.shift() == 0))

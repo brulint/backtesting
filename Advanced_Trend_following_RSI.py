@@ -6,7 +6,8 @@ import numpy as np
 import pandas as pd
 import talib as ta
 
-df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
+df = pd.read_csv('./btceur-2h.csv')
+#df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
 
 # strategy
 RSI = ta.RSI(df.close, timeperiod = 14)
@@ -20,12 +21,12 @@ signal_long = signal_long_buy.astype(int) - signal_long_sell.astype(int)
 signal_short = signal_short_sell.astype(int) - signal_short_buy.astype(int) 
 position_long = signal_long.where(signal_long != 0).ffill() > 0
 position_short = signal_short.where(signal_short != 0).ffill() > 0
-df['position'] = position_long.astype(int) - position_short.astype(int)
+position = position_long.astype(int) - position_short.astype(int)
 position_long_in = df.close.where((position == 1) & (position.shift() != 1))
 position_long_out = df.close.where((position != 1) & (position.shift() == 1))
 position_short_in = df.close.where((position == -1) & (position.shift() != -1))
 position_short_out = df.close.where((position != -1) & (position.shift() == -1))
-
+df['position'] = position
 
 # returns
 df['r_hodl'] = np.log( df['close'] / df['close'].shift() )
@@ -71,15 +72,15 @@ p3.line(df.date, np.where(position == -1, df.close, np.nan), color='red')
 
 p4 = figure(height=150, width=900, x_range=p1.x_range)
 p4.xaxis[0].formatter = xformatter
-p4.line(df.date, r_0, color='lightgray')
-p4.line(df.date, r_strat)
-p4.line(df.date, r_fee, color='red')
+p4.line(df.date, df.r_hodl, color='lightgray')
+p4.line(df.date, df.r_strat)
+p4.line(df.date, df.r_fee, color='red')
 
 p5 = figure(height=325, width=900, x_range=p1.x_range)
 p5.xaxis[0].formatter = xformatter
-p5.line(df.date, R_0, color='lightgray')
-p5.line(df.date, R_strat)
-p5.line(df.date, R_net, color='red')
+p5.line(df.date, df.R_hodl, color='lightgray')
+p5.line(df.date, df.R_strat)
+p5.line(df.date, df.R_net, color='red')
 
 layout = column(p1, p11, p2, p3, p4, p5)
 show(layout)

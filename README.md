@@ -27,7 +27,9 @@ Soit le cour d'un actif (ici BTC au 29/05/2023 - périodes de 2h):
 [2901 rows x 7 columns]
 ```
 
-<p align="center"><img src="img/20230529-0349.png" /></p>
+<p align="center"><img src="png/Data.png" /></p>
+
+<p align="center"><img src="png/r_0.png" /></p>
 
 ### Rendement
 
@@ -59,18 +61,15 @@ $$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
 
 $$ POS(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
 
-<p align="center"><img src="img/20230529-0350.png" /></p>
+<p align="center"><img src="png/Deathcross.png" /></p>
 
-<p align="center"><img src="img/20230529-0351.png" /></p>
+<p align="center"><img src="png/Deathcross_POS.png" /></p>
 
-<p align="center"><img src="img/20230529-0352.png" /></p>
+<p align="center"><img src="png/Deathcross_MVT.png" /></p>
 
+<p align="center"><img src="png/Deathcross_r_strat.png" /></p>
 
-
-<p align="center"><img src="img/20230529-0353.png" /></p>
-
-
-<p align="center"><img src="img/20230529-0354.png" /></p>
+<p align="center"><img src="png/Deathcross_R_cumul.png" /></p>
 
 Avec:
 

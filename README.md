@@ -90,7 +90,7 @@ Avec:
 <p align="center"><img src="png/Advanced_Deathcross_r_strat.png" /></p>
 <p align="center"><img src="png/Advanced_Deathcross_R_cumul.png" /></p>
 
-### Trend following (RSI)
+### Advanced Trend following (RSI)
 
 <p align="center"><img src="png/Advanced_Trend_following_MVT.png" /></p>
 <p align="center"><img src="png/Advanced_Trend_following_POS.png" /></p>

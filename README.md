@@ -79,12 +79,12 @@ Avec:
 
 ### Trend following RSI
 
-<p align="center"><img src="img/bokeh_plot(8).png" /></p>
-<p align="center"><img src="img/bokeh_plot(9).png" /></p>
-<p align="center"><img src="img/bokeh_plot(10).png" /></p>
-<p align="center"><img src="img/bokeh_plot(11).png" /></p>
-<p align="center"><img src="img/bokeh_plot(12).png" /></p>
-<p align="center"><img src="img/bokeh_plot(13).png" /></p>
+<p align="center"><img src="png/RSI.png" /></p>
+<p align="center"><img src="png/Trend_following_RSI_SIG.png" /></p>
+<p align="center"><img src="png/Trend_following_RSI_POS.png" /></p>
+<p align="center"><img src="png/Trend_following_RSI_MVT.png" /></p>
+<p align="center"><img src="png/Trend_following_RSI_r_strat" /></p>
+<p align="center"><img src="png/Trend_following_RSI_R_cumul.png" /></p>
 
 ### Advanced Deathcross
 

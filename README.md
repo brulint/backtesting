@@ -92,10 +92,10 @@ Avec:
 
 ### Trend following (RSI)
 
-<p align="center"><img src="png/Advanced_Trend_following_RSI_MVT.png" /></p>
-<p align="center"><img src="png/Advanced_Trend_following_RSI_POS.png" /></p>
-<p align="center"><img src="png/Advanced_Trend_following_RSI_r_strat.png" /></p>
-<p align="center"><img src="png/Advanced_Trend_following_RSI_R_cumul.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_MVT.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_POS.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_r_strat.png" /></p>
+<p align="center"><img src="png/Advanced_Trend_following_R_cumul.png" /></p>
 
 
 

@@ -33,27 +33,27 @@ Soit le cour d'un actif (ici BTC au 29/05/2023 - périodes de 2h):
 
 Rendement en HODL:
 
-$$r_0(t_n) = { Price(t_n)\over Price(t_{n-1}) }$$
-
-Rendement cumulé:
-
-$$R_0(t_n) = \prod_{i=1}^{t_n} \biggl( r_0(i) \biggr)$$
+$$r_0(t_n) = ln \biggl( { Price(t_n)\over Price(t_{n-1}) } \biggr)$$
 
 Position (définie par la stratégie):
 
 $$POS(t_n) = \begin{cases} 1 & \text{position ouverte} \\\\ 0 & \text{position fermé} \end{cases}$$
 
-Rendement de la stratégie:
+Rendement brut de la stratégie:
 
 $$r_{strat}(t_n) = r_0(t_n) \times POS(t_{n-1})$$
 
 Fees (sur achat et vente):
 
-$$r_{fee}(t_n) = \begin{cases} 1-fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 1 & \text{else} \end{cases}$$
+$$r_{fee}(t_n) = \begin{cases} fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 0 & \text{else} \end{cases}$$
+
+Rendement net de la stratégie:
+
+$$r_{net}(t_n) = r_{strat}(t_n) - r_{fee}(t_n)$$
 
 Rendement cumulé:
 
-$$R(t_n) = \prod_{i=1}^{t_n} \biggl( r_{strat}(i) \times r_{fee}(i) \biggr)$$
+$$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
 
 ## Deathcross
 

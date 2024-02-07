@@ -57,7 +57,7 @@ Rendement cumulé:
 
 $$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
 
-## Deathcross
+### Deathcross
 
 $$ POS(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
 
@@ -75,6 +75,10 @@ Avec:
 
 ### Trend following RSI
 
+$$ SIG_{buy}(t_n) \equiv RSI_{14}(t_n) > 70 $$
+
+$$ SIG_{sell}(t_n) \equiv RSI_{14}(t_n) < 30 $$
+
 <p align="center"><img src="png/RSI.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_SIG.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_POS.png" /></p>
@@ -84,6 +88,10 @@ Avec:
 
 ### Advanced Deathcross
 
+$$ POS_{long} \equiv EMA_{15}^{close} > SMA_{50}^{high} \times 1.01 $$
+
+$$ POS_{long} \equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01 $$
+
 <p align="center"><img src="png/Advanced_Deathcross.png" /></p>
 <p align="center"><img src="png/Advanced_Deathcross_MVT.png" /></p>
 <p align="center"><img src="png/Advanced_Deathcross_POS.png" /></p>
@@ -91,6 +99,14 @@ Avec:
 <p align="center"><img src="png/Advanced_Deathcross_R_cumul.png" /></p>
 
 ### Advanced Trend following (RSI)
+
+$$ SIG_{buy}^{long} \equiv RSI_{14} > 80 $$
+
+$$ SIG_{sell}^{long} \equiv RSI_{14} < 50 $$
+
+$$ SIG_{sell}^{short} \equiv RSI_{14} < 20 $$
+
+$$ SIG_{buy}^{short} \equiv RSI_{14} > 50 $$
 
 <p align="center"><img src="png/Advanced_Trend_following_MVT.png" /></p>
 <p align="center"><img src="png/Advanced_Trend_following_POS.png" /></p>

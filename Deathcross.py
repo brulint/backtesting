@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import talib as ta
 
-df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
+df = pd.read_csv('./btceur-2h.csv')
+#df = pd.read_csv('https://raw.githubusercontent.com/brulint/backtesting/main/btceur-2h.csv')
 
 # strategy
 df['fast'] = ta.EMA(df['close'], timeperiod = 20)

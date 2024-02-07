@@ -90,7 +90,7 @@ $$ SIG_{sell}(t_n) \equiv RSI_{14}(t_n) < 30 $$
 
 $$ POS_{long} \equiv EMA_{15}^{close} > SMA_{50}^{high} \times 1.01 $$
 
-$$ POS_{long} \equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01 $$
+$$ POS_{short} \equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01 $$
 
 <p align="center"><img src="png/Advanced_Deathcross.png" /></p>
 <p align="center"><img src="png/Advanced_Deathcross_MVT.png" /></p>

@@ -62,13 +62,9 @@ $$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
 $$ POS(t_n) \equiv EMA_{20}(t_n) > SMA_{200}(t_n) $$
 
 <p align="center"><img src="png/Deathcross.png" /></p>
-
 <p align="center"><img src="png/Deathcross_POS.png" /></p>
-
 <p align="center"><img src="png/Deathcross_MVT.png" /></p>
-
 <p align="center"><img src="png/Deathcross_r_strat.png" /></p>
-
 <p align="center"><img src="png/Deathcross_R_cumul.png" /></p>
 
 Avec:
@@ -83,7 +79,7 @@ Avec:
 <p align="center"><img src="png/Trend_following_RSI_SIG.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_POS.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_MVT.png" /></p>
-<p align="center"><img src="png/Trend_following_RSI_r_strat" /></p>
+<p align="center"><img src="png/Trend_following_RSI_r_strat.png" /></p>
 <p align="center"><img src="png/Trend_following_RSI_R_cumul.png" /></p>
 
 ### Advanced Deathcross

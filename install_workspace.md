@@ -14,7 +14,7 @@ Install IPython, Pip and some usefull libs:
 
 ```bash
 sudo apt install ipython3 python3-pip
-sudo pip3 install requests numpy pandas bokey
+sudo pip3 install requests numpy pandas bokeh
 ```
 
 ## TA_Lib

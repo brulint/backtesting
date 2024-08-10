@@ -29,7 +29,7 @@ Soit le cour d'un actif (ici BTC au 29/05/2023 - périodes de 2h):
 
 <p align="center"><img src="png/Data.png" /></p>
 
-### Rendement
+## Rendement
 
 Rendement en HODL:
 
@@ -37,6 +37,7 @@ $$r_0(t_n) = r_0([t_{n-1}, t_n]) = \ln \left( { Price(t_n)\over Price(t_{n-1}) }
 
 <p align="center"><img src="png/r_0.png" /></p>
 
+## Stratégie
 
 Position (définie par la stratégie):
 

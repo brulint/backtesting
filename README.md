@@ -115,7 +115,7 @@ $$
 begin{align}
 POS_{long} &\equiv EMA_{15}^{close} > SMA_{50}^{high} \times 1.01 \\
 POS_{short} &\equiv EMA_{15}^{close} < SMA_{50}^{low} \space / \space 1.01
-and{align}
+end{align}
 $$
 
 <p align="center"><img src="png/Advanced_Deathcross.png" /></p>

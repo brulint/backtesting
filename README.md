@@ -94,12 +94,12 @@ $$
 ### Advanced Trend following (RSI)
 
 $$
-begin{align}
+\begin{align}
 SIG_{buy}^{long} &\equiv RSI_{14} > 80 \\
 SIG_{sell}^{long} &\equiv RSI_{14} < 50 \\
 SIG_{sell}^{short} &\equiv RSI_{14} < 20 \\
 SIG_{buy}^{short} &\equiv RSI_{14} > 50
-end{align}
+\end{align}
 $$
 
 <p align="center"><img src="png/Advanced_Trend_following_MVT.png" /></p>

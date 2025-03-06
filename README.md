@@ -4,7 +4,9 @@ Keep it simple and stupid backstesting trading strategies.
 
 ## Disclamer
 
-_Quod de futuris non est determinata omnino veritas._
+_Quod de futuris non est determinata omnino veritas._ [^1]
+
+[^1]: "No truth can be determined with certainty about the future." Letter from Nostradamus to Henri II
 
 ## Download data
 

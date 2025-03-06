@@ -1,5 +1,4 @@
 # coding: utf-8
-# %load backtest1.py
 
 import requests
 import numpy as np

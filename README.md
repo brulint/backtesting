@@ -51,7 +51,7 @@ $$r_{strat}(t_n) = r_0(t_n) \times POS(t_{n-1})$$
 
 Fees (sur achat et vente):
 
-$$r_{fee}(t_n) = \begin{cases} fee & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 0 & \text{else} \end{cases}$$
+$$r_{fee}(t_n) = \begin{cases} \ln (1+fee) & \text{if } POS(t_{n-1}) \ne POS(t_n) \\\\ 0 & \text{else} \end{cases}$$
 
 Rendement net de la stratégie:
 

@@ -59,7 +59,7 @@ $$r_{net}(t_n) = r_{strat}(t_n) - r_{fee}(t_n)$$
 
 Rendement cumulé:
 
-$$R_{net}(t_n) = \sum_{i=1}^{t_n} \biggl( r_{net}(i) \biggr)$$
+$$R_{net}(t_n) = \exp \biggl( \sum_{i=1}^{t_n} \left( r_{net}(i) \right) \biggr)$$
 
 ### Deathcross
 
